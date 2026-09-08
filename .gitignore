@@ -1,0 +1,23 @@
+# Environments & Secrets (Never push your API keys!)
+.env
+.env.local
+.env.*.local
+venv/
+.venv/
+ENV/
+
+# Node dependencies & build artifacts
+node_modules/
+dist/
+dist-ssr/
+
+# Python cache & compiles
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# System & IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
