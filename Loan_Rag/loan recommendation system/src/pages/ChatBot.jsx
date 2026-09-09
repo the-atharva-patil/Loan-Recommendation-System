@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { API_BASE_URL } from "../apiConfig";
 import { 
   FaRobot,
   FaPaperPlane,
@@ -210,7 +211,7 @@ What would you like to know about your loan today?`,
 
       // Send the chat query to the server-side RAG proxy
       const ragQuery = systemPrompt + "\n\nUser Question: " + messageText;
-      const resp = await fetch("http://127.0.0.1:8000/rag/query", {
+      const resp = await fetch(`${API_BASE_URL}/rag/query`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: ragQuery }),

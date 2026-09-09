@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { motion } from 'framer-motion';
+import { API_BASE_URL } from "../apiConfig";
 import { 
   FaUser, 
   FaCalendarAlt, 
@@ -147,7 +148,7 @@ const LoanForm = () => {
       purpose: purpose
     };
 
-    const resp = await fetch("http://127.0.0.1:8000/predict", {
+    const resp = await fetch(`${API_BASE_URL}/predict`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
@@ -165,7 +166,7 @@ const LoanForm = () => {
     try {
       const ragQuery = `Best loan options and recommendations for: Person aged ${formData.age}; Monthly income: ₹${formData.income}; Loan type: ${formData.loanType}; Loan amount: ₹${amountToQuery}; CIBIL score: ${formData.cibilScore}; Marital status: ${formData.maritalStatus ? 'Married' : 'Single'}. Provide a JSON response with structured fields.`;
 
-      const resp = await fetch("http://127.0.0.1:8000/rag/query", {
+      const resp = await fetch(`${API_BASE_URL}/rag/query`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: ragQuery }),
